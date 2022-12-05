@@ -17,7 +17,8 @@ const tokensMap: { [key: number]: string } = {
 
     for (const [tokenId, tokenName] of Object.entries(tokensMap)) {
         const amt = await warcraft3.balanceOf(deployer.address, tokenId);
-        console.log(`Deployer has ${amt} ${tokenName}!`);
+        const metadataUri = (await warcraft3.uri(tokenId)).replace('{id}', tokenId);
+        console.log(`Deployer has ${amt} ${tokenName}! Metadata at ${metadataUri}`);
     }
 
     // TODO
